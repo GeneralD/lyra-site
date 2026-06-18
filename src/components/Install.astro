@@ -1,0 +1,53 @@
+---
+const cli = [
+  { cmd: "lyra start", note: "launch the overlay" },
+  { cmd: "lyra stop", note: "tear it down" },
+  { cmd: "lyra config", note: "edit settings" },
+  { cmd: "lyra track", note: "set the current song" },
+  { cmd: "lyra daemon", note: "run in the background" },
+];
+---
+
+<section id="install" class="relative mx-auto max-w-5xl px-6 py-20 sm:py-28">
+  <div class="mx-auto mb-12 max-w-2xl text-center">
+    <h2 class="font-display text-2xl font-bold uppercase tracking-tight sm:text-4xl">
+      Up and running in <span class="text-decode">30 seconds</span>
+    </h2>
+    <p class="mt-4 font-mono text-sm text-muted sm:text-base">
+      One tap, one install, one command. Requires macOS 14+.
+    </p>
+  </div>
+
+  <div class="grid gap-6 lg:grid-cols-2">
+    <!-- install -->
+    <div class="rounded-2xl border border-white/10 bg-surface p-7">
+      <h3 class="mb-4 font-display text-xs font-bold uppercase tracking-widest text-muted">
+        Install with Homebrew
+      </h3>
+      <pre class="overflow-x-auto rounded-lg border border-white/10 bg-black/40 p-5 font-mono text-sm leading-relaxed"><code><span class="text-faint">$</span> brew tap generald/tap
+<span class="text-faint">$</span> brew install lyra
+<span class="text-faint">$</span> <span class="text-decode">lyra start</span></code></pre>
+      <p class="mt-4 font-mono text-xs text-faint">
+        Prefer Mint or source? See the
+        <a href="https://github.com/GeneralD/lyra#installation" class="text-muted underline decoration-dotted underline-offset-4 hover:text-ink">README</a>.
+      </p>
+    </div>
+
+    <!-- cli reference -->
+    <div class="rounded-2xl border border-white/10 bg-surface p-7">
+      <h3 class="mb-4 font-display text-xs font-bold uppercase tracking-widest text-muted">
+        The CLI
+      </h3>
+      <ul class="space-y-2.5">
+        {
+          cli.map((c) => (
+            <li class="flex items-baseline justify-between gap-4 border-b border-white/5 pb-2.5 last:border-0">
+              <code class="font-mono text-sm text-decode">{c.cmd}</code>
+              <span class="font-mono text-xs text-faint">{c.note}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

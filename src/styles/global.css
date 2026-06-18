@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens harvested from ui-ux-pro-max ("App Store Style Landing")
+ * and tuned to Lyra's own palette: the green decode color (#4ADE80) and the
+ * gold lyric-highlight gradient (#B8942D → #EDCF73 → #FFEB99).
+ */
+@theme {
+  --color-bg: #0f0f23;
+  --color-surface: #16162e;
+  --color-deep: #1e1b4b;
+  --color-primary: #4338ca;
+  --color-accent: #22c55e;
+  --color-decode: #4ade80;
+  --color-gold: #edcf73;
+  --color-gold-hi: #ffeb99;
+  --color-ink: #f8fafc;
+  --color-muted: #a5b4fc;
+  --color-faint: #6b7280;
+
+  --font-display: "Syncopate", system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, "SF Mono", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-bg);
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-mono);
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Gold gradient used for the highlighted lyric line — straight from Lyra. */
+.text-lyric {
+  background: linear-gradient(180deg, #b8942d 0%, var(--color-gold) 45%, var(--color-gold-hi) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Subtle matrix-decode flicker on the green accent (CSS-only, respects motion prefs). */
+@keyframes decode-flicker {
+  0%, 100% { opacity: 1; }
+  47% { opacity: 0.78; }
+  48% { opacity: 1; }
+  92% { opacity: 0.85; }
+}
+.decode-flicker {
+  animation: decode-flicker 4.5s steps(1) infinite;
+}
+
+/* Vertical "code rain" streak behind the hero (purely decorative). */
+@keyframes rain {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .decode-flicker { animation: none; }
+  .rain-col { animation: none !important; }
+}

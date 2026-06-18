@@ -1,0 +1,84 @@
+---
+// Benefit-first framing of Lyra's real, shipped capabilities (see app README).
+const features = [
+  {
+    title: "Every word, on cue",
+    body: "Time-synced lyrics from LRCLIB float over your desktop and highlight line by line in a warm gold gradient.",
+    icon: "lyrics",
+  },
+  {
+    title: "A desktop that moves",
+    body: "Set any local file, HTTP stream, or YouTube video as a living wallpaper playing behind everything you do.",
+    icon: "video",
+  },
+  {
+    title: "Reacts to your touch",
+    body: "Mouse-reactive ripples distort the wallpaper as your cursor sweeps across the screen.",
+    icon: "ripple",
+  },
+  {
+    title: "Matrix-style reveal",
+    body: "Each lyric decodes into place with a cascading green animation, straight out of the terminal.",
+    icon: "decode",
+  },
+  {
+    title: "Knows what's playing",
+    body: "OpenAI-compatible AI extracts title and artist from anything — even untagged tracks — so lyrics just appear.",
+    icon: "ai",
+  },
+  {
+    title: "Runs from your terminal",
+    body: "A clean CLI (start, stop, config, track) and brew-services daemon keep Lyra exactly where you want it.",
+    icon: "cli",
+  },
+];
+
+const paths: Record<string, string> = {
+  lyrics:
+    "M9 18V5l12-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm12-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z",
+  video:
+    "M15 10l4.553-2.276A1 1 0 0 1 21 8.618v6.764a1 1 0 0 1-1.447.894L15 14M5 18h8a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z",
+  ripple:
+    "M3 12a9 9 0 0 1 9-9m0 18a9 9 0 0 1-9-9m13.5 0a4.5 4.5 0 0 1-4.5 4.5M16.5 12A4.5 4.5 0 0 0 12 7.5M12 12h.01",
+  decode:
+    "M8 9l3 3-3 3m5 0h3M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z",
+  ai: "M9.75 3.104a2.25 2.25 0 0 1 4.5 0M12 3v2m6.364.636-1.414 1.414M21 12h-2M5 12H3m3.05-5.95L7.464 7.464M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm0 13v-1",
+  cli: "M8 9l3 3-3 3m5 0h3M4 4h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z",
+};
+---
+
+<section id="features" class="relative mx-auto max-w-6xl px-6 py-20 sm:py-28">
+  <div class="mx-auto mb-14 max-w-2xl text-center">
+    <h2 class="font-display text-2xl font-bold uppercase tracking-tight sm:text-4xl">
+      Built for the <span class="text-lyric">moment</span>
+    </h2>
+    <p class="mt-4 font-mono text-sm text-muted sm:text-base">
+      Six things Lyra does that turn a static desktop into a soundtrack.
+    </p>
+  </div>
+
+  <div class="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      features.map((f) => (
+        <div class="group flex flex-col gap-4 bg-bg p-7 transition hover:bg-surface">
+          <span class="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-decode/25 bg-decode/10 text-decode transition group-hover:bg-decode/20">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.6"
+              stroke="currentColor"
+              class="h-5 w-5"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d={paths[f.icon]} />
+            </svg>
+          </span>
+          <h3 class="font-display text-sm font-bold uppercase tracking-wide text-ink">
+            {f.title}
+          </h3>
+          <p class="font-mono text-sm leading-relaxed text-muted">{f.body}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>
