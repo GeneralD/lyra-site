@@ -1,15 +1,15 @@
 ---
-import { asLocale, locales, type Locale } from "../i18n/translations";
+import { asLocale, copy, locales, type Locale } from "../i18n/translations";
+import { localePath } from "../i18n/routes";
 
 const locale = asLocale(Astro.currentLocale);
-const basePath = Astro.url.pathname.replace(/^\/ja(?=\/|$)/, "") || "/";
-const hrefFor = (l: Locale) =>
-  l === "en" ? basePath : basePath === "/" ? "/ja/" : `/ja${basePath}`;
+const t = copy[locale].langSwitcher;
+const hrefFor = (l: Locale) => localePath(l, Astro.url.pathname);
 const labels = { en: "EN", ja: "JA" } as const;
 ---
 
 <nav
-  aria-label="Language"
+  aria-label={t.label}
   class="fixed right-4 top-4 z-50 flex overflow-hidden rounded-full border border-white/15 bg-black/40 font-mono text-xs backdrop-blur"
 >
   {

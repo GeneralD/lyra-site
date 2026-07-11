@@ -4,8 +4,10 @@
 export const locales = ["en", "ja"] as const;
 export type Locale = (typeof locales)[number];
 
+export const defaultLocale: Locale = "en";
+
 export const asLocale = (value: string | undefined): Locale =>
-  locales.find((l) => l === value) ?? "en";
+  locales.find((l) => l === value) ?? defaultLocale;
 
 export type FeatureKey =
   | "lyrics"
@@ -54,6 +56,7 @@ type Copy = {
     readonly license: string;
     readonly madeWith: string;
   };
+  readonly langSwitcher: { readonly label: string };
   readonly notFound: {
     readonly title: string;
     readonly description: string;
@@ -138,6 +141,7 @@ export const copy = {
       license: "License",
       madeWith: "Made with Swift 6 for macOS",
     },
+    langSwitcher: { label: "Language" },
     notFound: {
       title: "404 — Lyra",
       description: "That page decoded into nothing.",
@@ -220,6 +224,7 @@ export const copy = {
       license: "ライセンス",
       madeWith: "Swift 6 で、macOS のために",
     },
+    langSwitcher: { label: "言語切り替え" },
     notFound: {
       title: "404 — Lyra",
       description: "このページは何にもデコードされませんでした。",

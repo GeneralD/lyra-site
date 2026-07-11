@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import LangSwitcher from "../components/LangSwitcher.astro";
 import { asLocale, copy } from "../i18n/translations";
+import { localePath } from "../i18n/routes";
 
 interface Props {
   title?: string;
@@ -14,10 +15,9 @@ const { title = meta.title, description = meta.description } = Astro.props;
 
 const site = "https://lyra-site.yumejustice.workers.dev";
 const ogImage = `${site}/og.jpg`;
-const basePath = Astro.url.pathname.replace(/^\/ja(?=\/|$)/, "") || "/";
 const alternates = {
-  en: `${site}${basePath}`,
-  ja: `${site}${basePath === "/" ? "/ja/" : `/ja${basePath}`}`,
+  en: `${site}${localePath("en", Astro.url.pathname)}`,
+  ja: `${site}${localePath("ja", Astro.url.pathname)}`,
 };
 const canonical = alternates[locale];
 ---
