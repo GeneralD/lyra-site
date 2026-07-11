@@ -1,6 +1,6 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { asLocale, copy } from "../i18n/translations";
+import Layout from "../../layouts/Layout.astro";
+import { asLocale, copy } from "../../i18n/translations";
 
 const locale = asLocale(Astro.currentLocale);
 const t = copy[locale].notFound;

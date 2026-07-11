@@ -1,0 +1,29 @@
+---
+import { asLocale, locales, type Locale } from "../i18n/translations";
+
+const locale = asLocale(Astro.currentLocale);
+const basePath = Astro.url.pathname.replace(/^\/ja(?=\/|$)/, "") || "/";
+const hrefFor = (l: Locale) =>
+  l === "en" ? basePath : basePath === "/" ? "/ja/" : `/ja${basePath}`;
+const labels = { en: "EN", ja: "JA" } as const;
+---
+
+<nav
+  aria-label="Language"
+  class="fixed right-4 top-4 z-50 flex overflow-hidden rounded-full border border-white/15 bg-black/40 font-mono text-xs backdrop-blur"
+>
+  {
+    locales.map((l) => (
+      <a
+        href={hrefFor(l)}
+        aria-current={l === locale ? "page" : undefined}
+        class:list={[
+          "px-3 py-1.5 tracking-widest transition",
+          l === locale ? "bg-white/10 text-ink" : "text-faint hover:text-ink",
+        ]}
+      >
+        {labels[l]}
+      </a>
+    ))
+  }
+</nav>

@@ -1,4 +1,6 @@
 ---
+import { asLocale, copy } from "../i18n/translations";
+
 // CSS-only "code rain" backdrop — decorative, no JS, honours reduced-motion.
 const cols = Array.from({ length: 24 }, (_, i) => {
   const left = (i / 24) * 100;
@@ -7,6 +9,8 @@ const cols = Array.from({ length: 24 }, (_, i) => {
   const glyphs = "01ライラ♪♫01アイウエオ01".repeat(6);
   return { left, delay, dur, glyphs };
 });
+
+const t = copy[asLocale(Astro.currentLocale)].hero;
 ---
 
 <section class="relative overflow-hidden border-b border-white/5">
@@ -37,39 +41,37 @@ const cols = Array.from({ length: 24 }, (_, i) => {
       class="mb-6 inline-flex items-center gap-2 rounded-full border border-decode/30 bg-decode/5 px-4 py-1.5 font-mono text-xs uppercase tracking-[0.2em] text-decode decode-flicker"
     >
       <span class="h-1.5 w-1.5 rounded-full bg-decode"></span>
-      for macOS 14+
+      {t.badge}
     </span>
 
-    <h1 class="font-display text-5xl font-bold uppercase leading-[1.05] tracking-tight sm:text-7xl">
-      Your desktop,<br />
-      <span class="text-lyric">set to music.</span>
-    </h1>
+    <h1
+      class="font-display text-5xl font-bold uppercase leading-[1.05] tracking-tight sm:text-7xl"
+      set:html={t.titleHtml}
+    />
 
-    <p class="mt-7 max-w-2xl font-mono text-base leading-relaxed text-muted sm:text-lg">
-      Lyra paints your macOS desktop with a living video wallpaper, floats
-      <span class="text-ink">synced lyrics</span> right over it — decoded line by
-      line, matrix-style — and sets a
-      <span class="text-ink">real-time spectrum</span> dancing to your sound.
-    </p>
+    <p
+      class="mt-7 max-w-2xl font-mono text-base leading-relaxed text-muted sm:text-lg"
+      set:html={t.leadHtml}
+    />
 
     <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row">
       <a
         href="#install"
         class="group inline-flex items-center gap-2 rounded-lg bg-accent px-7 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-bg transition hover:bg-decode hover:shadow-[0_0_30px_-5px_var(--color-decode)]"
       >
-        brew install lyra
+        {t.ctaInstall}
         <span class="transition-transform group-hover:translate-x-0.5">→</span>
       </a>
       <a
         href="https://github.com/GeneralD/lyra"
         class="inline-flex items-center gap-2 rounded-lg border border-white/15 px-7 py-3.5 font-mono text-sm font-bold uppercase tracking-wider text-ink transition hover:border-white/40 hover:bg-white/5"
       >
-        View on GitHub
+        {t.ctaGithub}
       </a>
     </div>
 
     <p class="mt-6 font-mono text-xs text-faint">
-      Free &amp; open source · Homebrew, Mint, or build from source
+      {t.subNote}
     </p>
   </div>
 </section>

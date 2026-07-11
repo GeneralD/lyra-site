@@ -1,22 +1,29 @@
 ---
 import "../styles/global.css";
+import LangSwitcher from "../components/LangSwitcher.astro";
+import { asLocale, copy } from "../i18n/translations";
 
 interface Props {
   title?: string;
   description?: string;
 }
 
-const {
-  title = "Lyra — Desktop lyrics overlay & video wallpaper for macOS",
-  description = "Lyra turns your macOS desktop into a living, lyric-synced backdrop: synced lyrics overlay, video wallpaper, mouse-reactive ripples, a matrix-style decode animation, and a real-time audio spectrum.",
-} = Astro.props;
+const locale = asLocale(Astro.currentLocale);
+const meta = copy[locale].meta;
+const { title = meta.title, description = meta.description } = Astro.props;
 
 const site = "https://lyra-site.yumejustice.workers.dev";
 const ogImage = `${site}/og.jpg`;
+const basePath = Astro.url.pathname.replace(/^\/ja(?=\/|$)/, "") || "/";
+const alternates = {
+  en: `${site}${basePath}`,
+  ja: `${site}${basePath === "/" ? "/ja/" : `/ja${basePath}`}`,
+};
+const canonical = alternates[locale];
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,13 +33,19 @@ const ogImage = `${site}/og.jpg`;
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={alternates.en} />
+    <link rel="alternate" hreflang="ja" href={alternates.ja} />
+    <link rel="alternate" hreflang="x-default" href={alternates.en} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:url" content={site} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={locale === "ja" ? "ja_JP" : "en_US"} />
+    <meta property="og:locale:alternate" content={locale === "ja" ? "en_US" : "ja_JP"} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -47,6 +60,7 @@ const ogImage = `${site}/og.jpg`;
     />
   </head>
   <body class="bg-bg text-ink antialiased">
+    <LangSwitcher />
     <slot />
   </body>
 </html>

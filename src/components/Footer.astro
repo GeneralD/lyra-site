@@ -1,5 +1,8 @@
 ---
+import { asLocale, copy } from "../i18n/translations";
+
 const year = new Date().getFullYear();
+const t = copy[asLocale(Astro.currentLocale)].footer;
 ---
 
 <footer class="border-t border-white/10">
@@ -7,19 +10,19 @@ const year = new Date().getFullYear();
     <div class="text-center sm:text-left">
       <p class="font-display text-sm font-bold uppercase tracking-widest text-ink">Lyra</p>
       <p class="mt-1 font-mono text-xs text-faint">
-        Desktop lyrics overlay &amp; video wallpaper for macOS.
+        {t.tagline}
       </p>
     </div>
 
     <nav class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-mono text-xs">
       <a href="https://github.com/GeneralD/lyra" class="text-muted transition hover:text-ink">GitHub</a>
       <a href="https://github.com/GeneralD/homebrew-tap" class="text-muted transition hover:text-ink">Homebrew Tap</a>
-      <a href="https://github.com/GeneralD/lyra#readme" class="text-muted transition hover:text-ink">Docs</a>
-      <a href="https://github.com/GeneralD/lyra/blob/main/LICENSE" class="text-muted transition hover:text-ink">License</a>
+      <a href="https://github.com/GeneralD/lyra#readme" class="text-muted transition hover:text-ink">{t.docs}</a>
+      <a href="https://github.com/GeneralD/lyra/blob/main/LICENSE" class="text-muted transition hover:text-ink">{t.license}</a>
     </nav>
   </div>
 
   <div class="border-t border-white/5 py-5 text-center font-mono text-xs text-faint">
-    © {year} GeneralD · Made with Swift 6 for macOS
+    © {year} GeneralD · {t.madeWith}
   </div>
 </footer>
