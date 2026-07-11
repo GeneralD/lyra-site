@@ -31,6 +31,11 @@ const features = [
     body: "A clean CLI (start, stop, config, track) and brew-services daemon keep Lyra exactly where you want it.",
     icon: "cli",
   },
+  {
+    title: "Sound you can see",
+    body: "A cava-inspired spectrum analyzer taps the now-playing audio and dances along any edge of your screen — stereo, gradient-tinted, fully tunable. macOS 14.4+.",
+    icon: "spectrum",
+  },
 ];
 
 const paths: Record<string, string> = {
@@ -44,6 +49,7 @@ const paths: Record<string, string> = {
     "M8 9l3 3-3 3m5 0h3M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z",
   ai: "M9.75 3.104a2.25 2.25 0 0 1 4.5 0M12 3v2m6.364.636-1.414 1.414M21 12h-2M5 12H3m3.05-5.95L7.464 7.464M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm0 13v-1",
   cli: "M8 9l3 3-3 3m5 0h3M4 4h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z",
+  spectrum: "M4 19v-5m4 5V5m4 14v-9m4 9V8m4 11v-3",
 };
 ---
 
@@ -53,7 +59,7 @@ const paths: Record<string, string> = {
       Built for the <span class="text-lyric">moment</span>
     </h2>
     <p class="mt-4 font-mono text-sm text-muted sm:text-base">
-      Six things Lyra does that turn a static desktop into a soundtrack.
+      Seven things Lyra does that turn a static desktop into a soundtrack.
     </p>
   </div>
 
