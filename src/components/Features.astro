@@ -1,41 +1,22 @@
 ---
 // Benefit-first framing of Lyra's real, shipped capabilities (see app README).
-// Copy lives in src/i18n/translations.ts; this file owns the icon artwork.
+// Copy lives in src/i18n/translations.ts; each card leads with a live animated
+// motif (FeatureMotif) that visualises the feature — the site as its own demo.
 import { asLocale, copy, type FeatureKey } from "../i18n/translations";
+import FeatureMotif from "./FeatureMotif.astro";
 
-const icons: readonly { key: FeatureKey; path: string }[] = [
-  {
-    key: "lyrics",
-    path: "M9 18V5l12-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm12-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z",
-  },
-  {
-    key: "video",
-    path: "M15 10l4.553-2.276A1 1 0 0 1 21 8.618v6.764a1 1 0 0 1-1.447.894L15 14M5 18h8a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z",
-  },
-  {
-    key: "ripple",
-    path: "M3 12a9 9 0 0 1 9-9m0 18a9 9 0 0 1-9-9m13.5 0a4.5 4.5 0 0 1-4.5 4.5M16.5 12A4.5 4.5 0 0 0 12 7.5M12 12h.01",
-  },
-  {
-    key: "decode",
-    path: "M8 9l3 3-3 3m5 0h3M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z",
-  },
-  {
-    key: "ai",
-    path: "M9.75 3.104a2.25 2.25 0 0 1 4.5 0M12 3v2m6.364.636-1.414 1.414M21 12h-2M5 12H3m3.05-5.95L7.464 7.464M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm0 13v-1",
-  },
-  {
-    key: "cli",
-    path: "M8 9l3 3-3 3m5 0h3M4 4h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z",
-  },
-  {
-    key: "spectrum",
-    path: "M4 19v-5m4 5V5m4 14v-9m4 9V8m4 11v-3",
-  },
+const order: readonly FeatureKey[] = [
+  "lyrics",
+  "video",
+  "ripple",
+  "decode",
+  "ai",
+  "cli",
+  "spectrum",
 ];
 
 const t = copy[asLocale(Astro.currentLocale)].features;
-const features = icons.map(({ key, path }) => ({ ...t.cards[key], path }));
+const features = order.map((key) => ({ key, ...t.cards[key] }));
 ---
 
 <section id="features" class="relative mx-auto max-w-6xl px-6 py-20 sm:py-28">
@@ -53,18 +34,7 @@ const features = icons.map(({ key, path }) => ({ ...t.cards[key], path }));
     {
       features.map((f) => (
         <div class="group flex flex-col gap-4 bg-bg p-7 transition hover:bg-surface">
-          <span class="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-decode/25 bg-decode/10 text-decode transition group-hover:bg-decode/20">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.6"
-              stroke="currentColor"
-              class="h-5 w-5"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" d={f.path} />
-            </svg>
-          </span>
+          <FeatureMotif featureKey={f.key} />
           <h3 class="font-display text-sm font-bold uppercase tracking-wide text-ink">
             {f.title}
           </h3>
