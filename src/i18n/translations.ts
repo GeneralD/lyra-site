@@ -151,64 +151,64 @@ export const copy = {
   },
   ja: {
     meta: {
-      title: "Lyra — 動く壁紙と同期歌詞で彩る macOS デスクトップ",
+      title: "Lyra — 歌詞オーバーレイと動く壁紙で、macOS デスクトップを音楽に染める",
       description:
-        "Lyra は macOS のデスクトップを、音楽と呼吸する背景に変えるアプリ。同期歌詞のオーバーレイ、動く動画壁紙、マウスに反応する波紋、マトリックス風のデコード演出、リアルタイムのオーディオスペクトラム — ぜんぶ揃っています。",
+        "再生中の曲に合わせて、デスクトップそのものが動き出す。壁紙が揺れ、歌詞が浮かび、音がスペクトラムになって踊る。Lyra は macOS のデスクトップを「音楽が見える場所」に変える、無料・オープンソースのアプリです。",
     },
     hero: {
       badge: "macOS 14+ 対応",
       titleHtml: 'デスクトップが、<br /> <span class="text-lyric">音楽に染まる。</span>',
       leadHtml:
-        'macOS のデスクトップが、動く動画壁紙に。その上を<span class="text-ink">同期歌詞</span>がマトリックス風に一行ずつ流れ、<span class="text-ink">リアルタイムのスペクトラム</span>が音に合わせて踊ります。',
+        '再生中の曲に合わせて、壁紙が動き出す。その上を<span class="text-ink">歌詞</span>がマトリックスのように流れ、<span class="text-ink">スペクトラム</span>が音そのものを描き出す。',
       ctaInstall: "brew install lyra",
       ctaGithub: "GitHub で見る",
       subNote: "無料 & オープンソース · Homebrew / Mint / ソースからビルド",
     },
     demo: {
       headingHtml: '<span class="text-decode">実際の動き</span>を見る',
-      lead: "カーソルが通るたび、動画壁紙が波打つ。その上に歌詞がデコードされて現れます。モックアップではない、本物の動作映像です。",
+      lead: "カーソルを走らせると、壁紙が水面のように波打つ。歌詞は一行ずつ解けて現れる。作り込んだモックではなく、そのまま撮った実際の画面です。",
       windowLabel: "lyra · desktop overlay",
       imgAlt: "macOS で動作する Lyra: 波打つ動画壁紙の上で同期歌詞がデコードされる様子",
     },
     features: {
       headingHtml: 'その<span class="text-lyric">瞬間</span>のために',
-      lead: "ただのデスクトップを、サウンドトラックに変える7つの機能。",
+      lead: "いつものデスクトップを、音楽が主役の場所に変える7つの仕掛け。",
       cards: {
         lyrics: {
-          title: "一言一句、ぴったりのタイミングで",
-          body: "LRCLIB の同期歌詞がデスクトップに浮かび、温かいゴールドのグラデーションで一行ずつ光ります。",
+          title: "歌詞が、ぴたりと重なる",
+          body: "LRCLIB の同期歌詞がデスクトップに浮かび、いまうたっている一行がゴールドにともる。",
         },
         video: {
-          title: "デスクトップが、止まらない",
-          body: "ローカルファイルも、HTTP ストリームも、YouTube も。作業の裏でずっと流れる、生きた壁紙になります。",
+          title: "壁紙が、生きている",
+          body: "手持ちの動画も、配信も、YouTube も。作業のうしろでずっと流れて、画面が呼吸しはじめる。",
         },
         ripple: {
-          title: "触れれば、応える",
-          body: "カーソルが画面をなでるたび、波紋が壁紙を揺らします。",
+          title: "カーソルに、さざなみが立つ",
+          body: "マウスを走らせるたび、壁紙が水面みたいに波打って追いかける。",
         },
         decode: {
-          title: "マトリックスのように解読",
-          body: "歌詞が一行ずつ、ターミナル譲りの緑のカスケードで解読されて現れます。",
+          title: "文字が、解けて歌詞になる",
+          body: "一行ごとに緑のコードがカタカタとほどけて、歌詞になる。ターミナル育ちの演出。",
         },
         ai: {
-          title: "曲名は、勝手に見つかる",
-          body: "OpenAI 互換の AI がタイトルとアーティストを判別。タグのない曲でも、歌詞はそのまま現れます。",
+          title: "何の曲かは、Lyra が見抜く",
+          body: "OpenAI 互換の AI がタイトルとアーティストを言い当てる。タグがなくても、歌詞はちゃんと出てくる。",
         },
         cli: {
-          title: "ターミナルから、意のままに",
-          body: "クリーンな CLI(start / stop / config / track)と brew services デーモンで、Lyra を思いどおりに。",
+          title: "ターミナルが、いちばんの近道",
+          body: "start・stop・config・track のシンプルな CLI と brew services 常駐で、思いどおりに動かせる。",
         },
         spectrum: {
-          title: "音が、見える",
-          body: "cava 風のスペクトラムアナライザが再生中の音を拾い、画面の好きな辺でビートに合わせて踊ります。ステレオ、グラデーション、細部の調整まで思いのまま。macOS 14.4+。",
+          title: "音が、目に見える",
+          body: "cava ゆずりのスペクトラムが、再生中の音を画面のふちで躍らせる。ステレオ対応、色も配置も思いのまま。macOS 14.4+。",
         },
       },
     },
     install: {
       headingHtml: '<span class="text-decode">30秒</span>で使い始める',
-      lead: "インストールはコマンド一発。あとは動き出すだけ。macOS 14+ 対応。",
+      lead: "インストールはコマンドひとつ。あとは流したい曲を再生するだけ。macOS 14+ 対応。",
       installHeading: "Homebrew でインストール",
-      readme: { pre: "Mint やソースからビルドしたい人は ", label: "README", post: " へ。" },
+      readme: { pre: "Mint やソースから入れたい人は ", label: "README", post: " をどうぞ。" },
       cliHeading: "CLI リファレンス",
       cli: [
         { cmd: "lyra start", note: "オーバーレイを起動" },
@@ -219,7 +219,7 @@ export const copy = {
       ],
     },
     footer: {
-      tagline: "macOS のためのデスクトップ歌詞オーバーレイ & 動画壁紙。",
+      tagline: "歌詞と動く壁紙で、macOS のデスクトップを音楽に。",
       docs: "ドキュメント",
       license: "ライセンス",
       madeWith: "Swift 6 製、macOS のために",
@@ -227,8 +227,8 @@ export const copy = {
     langSwitcher: { label: "言語切り替え" },
     notFound: {
       title: "404 — Lyra",
-      description: "このページは、何にもデコードされませんでした。",
-      message: "このページは、何にもデコードされませんでした。",
+      description: "このページは、どこにもデコードされませんでした。",
+      message: "このページは、どこにもデコードされませんでした。",
       back: "← Lyra に戻る",
     },
   },
