@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://lyra-site.yumejustice.workers.dev",
   i18n: {
     defaultLocale: "en",
     locales: ["en", "ja"],

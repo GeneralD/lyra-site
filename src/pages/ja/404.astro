@@ -1,22 +1,5 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import { asLocale, copy } from "../../i18n/translations";
-import { localePath } from "../../i18n/routes";
-
-const locale = asLocale(Astro.currentLocale);
-const t = copy[locale].notFound;
-const home = localePath(locale, "/");
+import NotFound from "../../components/NotFound.astro";
 ---
 
-<Layout title={t.title} description={t.description}>
-  <main class="flex min-h-screen flex-col items-center justify-center px-6 text-center">
-    <p class="font-display text-7xl font-bold uppercase tracking-tight text-decode decode-flicker">404</p>
-    <p class="mt-6 font-mono text-base text-muted">{t.message}</p>
-    <a
-      href={home}
-      class="mt-8 inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider text-bg transition hover:bg-decode"
-    >
-      {t.back}
-    </a>
-  </main>
-</Layout>
+<NotFound />
