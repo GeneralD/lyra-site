@@ -85,21 +85,28 @@ body {
 }
 .group:hover .motif-spectrum .eq-bar { animation-duration: 0.85s; }
 
-/* lyrics — stacked lyric lines, the "current" one lit gold in turn */
+/* lyrics — stacked lyric lines, the "current" one lit gold in turn. The gold
+   is a static gradient overlay whose opacity pulses; the base bar never moves,
+   so only opacity animates. */
 .lyr-line {
+  position: relative;
   height: 4px;
   border-radius: 2px;
   background: var(--color-faint);
-  opacity: 0.45;
+}
+.lyr-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #b8942d, var(--color-gold), var(--color-gold-hi));
+  opacity: 0;
   animation: lyr 5.2s ease-in-out infinite;
   animation-delay: calc(var(--i) * 1.3s);
 }
 @keyframes lyr {
-  0%, 68%, 100% { background: var(--color-faint); opacity: 0.4; }
-  12%, 22% {
-    background: linear-gradient(90deg, #b8942d, var(--color-gold), var(--color-gold-hi));
-    opacity: 1;
-  }
+  0%, 68%, 100% { opacity: 0; }
+  12%, 22% { opacity: 1; }
 }
 
 /* video — a living wallpaper: an oversized gradient slowly drifting */
@@ -207,18 +214,21 @@ body {
   100% { opacity: 0; transform: translateX(-4px); }
 }
 
-/* cli — a prompt typing `lyra start` with a blinking cursor */
+/* cli — a prompt typing `lyra start` character by character (each glyph fades
+   in via opacity, staggered) then a blinking cursor. */
 .cli-cmd {
+  display: inline-flex;
   margin-left: 6px;
-  white-space: nowrap;
-  overflow: hidden;
-  clip-path: inset(0 100% 0 0);
-  animation: cli-type 4.2s steps(10, end) infinite;
 }
-@keyframes cli-type {
-  0% { clip-path: inset(0 100% 0 0); }
-  38%, 88% { clip-path: inset(0 0 0 0); }
-  100% { clip-path: inset(0 100% 0 0); }
+.cli-ch {
+  opacity: 0;
+  animation: cli-char 4.2s ease infinite;
+  animation-delay: calc(var(--i) * 0.11s);
+}
+@keyframes cli-char {
+  0%, 6% { opacity: 0; }
+  11%, 82% { opacity: 1; }
+  90%, 100% { opacity: 0; }
 }
 .cli-cursor {
   width: 5px;
@@ -239,13 +249,11 @@ body {
 
   /* Motifs: freeze on a legible, representative static frame. */
   .motif * { animation: none !important; }
+  .lyr-line::after { animation: none !important; }
   .eq-bar { transform: scaleY(0.6); }
   .eq-bar:nth-child(3n) { transform: scaleY(0.85); }
   .eq-bar:nth-child(4n) { transform: scaleY(0.4); }
-  .lyr-line:nth-child(2) {
-    background: linear-gradient(90deg, #b8942d, var(--color-gold), var(--color-gold-hi));
-    opacity: 1;
-  }
+  .lyr-line:nth-child(2)::after { opacity: 1; }
   .vid-pan { opacity: 0.5; }
   .rip-ring { opacity: 0.35; }
   .rip-ring:nth-child(1) { transform: scale(0.7); opacity: 0.6; }
@@ -254,6 +262,6 @@ body {
   .dec-ch:nth-child(3n) { opacity: 0.35; }
   .ai-scan { opacity: 0; }
   .ai-label { opacity: 0.85; transform: none; }
-  .cli-cmd { clip-path: inset(0 0 0 0); }
+  .cli-ch { opacity: 1; }
   .cli-cursor { opacity: 1; }
 }
