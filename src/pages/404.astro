@@ -1,16 +1,5 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import NotFound from "../components/NotFound.astro";
 ---
 
-<Layout title="404 — Lyra" description="That page decoded into nothing.">
-  <main class="flex min-h-screen flex-col items-center justify-center px-6 text-center">
-    <p class="font-display text-7xl font-bold uppercase tracking-tight text-decode decode-flicker">404</p>
-    <p class="mt-6 font-mono text-base text-muted">This page decoded into nothing.</p>
-    <a
-      href="/"
-      class="mt-8 inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider text-bg transition hover:bg-decode"
-    >
-      ← back to Lyra
-    </a>
-  </main>
-</Layout>
+<NotFound />
