@@ -1,0 +1,97 @@
+---
+// Per-feature animated motif — a tiny live "demo" of what each card describes.
+// CSS-only (keyframes live in global.css), honours prefers-reduced-motion, and
+// uses only transform/opacity so it stays cheap. Purely decorative → aria-hidden.
+import type { FeatureKey } from "../i18n/translations";
+
+interface Props {
+  readonly featureKey: FeatureKey;
+}
+
+const { featureKey } = Astro.props;
+
+const bars = Array.from({ length: 22 }, (_, i) => i);
+const lyricLines = [72, 92, 58, 84]; // relative widths (%) of the stacked lyric lines
+const glyphs = "01ライ♪ラ01アイ♫ウ0エ1".split("");
+---
+
+<div
+  aria-hidden="true"
+  class:list={[
+    "motif",
+    `motif-${featureKey}`,
+    "relative h-14 w-full overflow-hidden rounded-lg border border-decode/20 bg-decode/[0.04]",
+  ]}
+>
+  {
+    featureKey === "spectrum" && (
+      <div class="flex h-full items-end justify-center gap-[3px] px-3 pb-2">
+        {bars.map((i) => (
+          <span class="eq-bar" style={`--i:${i}`} />
+        ))}
+      </div>
+    )
+  }
+
+  {
+    featureKey === "lyrics" && (
+      <div class="flex h-full flex-col justify-center gap-1.5 px-4">
+        {lyricLines.map((w, i) => (
+          <span class="lyr-line" style={`--i:${i};width:${w}%`} />
+        ))}
+      </div>
+    )
+  }
+
+  {
+    featureKey === "video" && (
+      <>
+        <span class="vid-pan" />
+        <span class="vid-scan absolute inset-0" />
+      </>
+    )
+  }
+
+  {
+    featureKey === "ripple" && (
+      <div class="grid h-full place-items-center">
+        <span class="rip-ring" style="--d:0s" />
+        <span class="rip-ring" style="--d:1s" />
+        <span class="rip-ring" style="--d:2s" />
+        <span class="rip-dot" />
+      </div>
+    )
+  }
+
+  {
+    featureKey === "decode" && (
+      <div class="flex h-full items-center justify-center gap-[3px] px-3 font-mono text-[11px] tracking-widest text-decode">
+        {glyphs.map((g, i) => (
+          <span class="dec-ch" style={`--i:${i}`}>
+            {g}
+          </span>
+        ))}
+      </div>
+    )
+  }
+
+  {
+    featureKey === "ai" && (
+      <div class="relative flex h-full flex-col justify-center gap-1 px-4">
+        <span class="ai-scan" />
+        <span class="ai-label" style="--i:0">TITLE</span>
+        <span class="ai-label" style="--i:1">ARTIST</span>
+      </div>
+    )
+  }
+
+  {
+    featureKey === "cli" && (
+      <div class="flex h-full items-center px-4 font-mono text-[11px] text-ink">
+        <span class="text-decode">❯</span>
+        <span class="cli-cmd">lyra start</span>
+        <span class="cli-cursor" />
+      </div>
+    )
+  }
+</div>
