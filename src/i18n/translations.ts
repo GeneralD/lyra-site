@@ -163,8 +163,9 @@ export const copy = {
       },
       recommend: {
         heading: "Get the full set",
-        body: "Want Lyra's world to follow you past the screen saver and onto the lock screen? Install all three. The companions piggyback on lyra's own config and cache — zero extra setup.",
+        body: "Want Lyra's world to follow you past the screen saver and onto the lock screen? Install all three. The companions piggyback on Lyra's own config and cache — zero extra setup.",
         note: "Both companions pull in lyra automatically. Then pick LyraScreenSaver in System Settings, and let --apply paint the lock screen.",
+      }
       },
     },
     footer: {
