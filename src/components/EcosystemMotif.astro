@@ -1,0 +1,66 @@
+---
+// Per-surface animated motif — each family card's mini "screen" showing how
+// Lyra's world appears there. Same rules as FeatureMotif: CSS-only keyframes
+// (global.css), transform/opacity animation only, honours
+// prefers-reduced-motion, purely decorative → aria-hidden.
+import type { EcosystemKey } from "../i18n/translations";
+
+interface Props {
+  readonly surfaceKey: EcosystemKey;
+}
+
+const { surfaceKey } = Astro.props;
+
+const bars = Array.from({ length: 6 }, (_, i) => i);
+---
+
+<div
+  aria-hidden="true"
+  class:list={[
+    "motif",
+    `motif-${surfaceKey}`,
+    "relative h-20 w-full overflow-hidden rounded-lg border border-decode/20 bg-decode/[0.04]",
+  ]}
+>
+  {
+    surfaceKey === "desktop" && (
+      <>
+        <span class="vid-pan" />
+        <div class="absolute inset-x-4 bottom-3 flex items-end justify-between gap-4">
+          <div class="flex w-1/2 flex-col gap-1.5">
+            <span class="lyr-line" style="--i:0;width:88%" />
+            <span class="lyr-line" style="--i:1;width:64%" />
+          </div>
+          <div class="flex h-6 items-end gap-[3px]">
+            {bars.map((i) => (
+              <span class="eq-bar" style={`--i:${i}`} />
+            ))}
+          </div>
+        </div>
+      </>
+    )
+  }
+
+  {
+    surfaceKey === "screensaver" && (
+      <>
+        <span class="vid-pan eco-pan-slow" />
+        <span class="vid-scan absolute inset-0" />
+        <span class="eco-dim" />
+      </>
+    )
+  }
+
+  {
+    surfaceKey === "lockscreen" && (
+      <>
+        <span class="eco-sky-night absolute inset-0" />
+        <span class="eco-sky eco-sky-dawn" />
+        <span class="eco-sky eco-sky-day" />
+        <div class="relative grid h-full place-items-center">
+          <span class="font-display text-2xl font-bold tracking-tight text-ink/90">9:41</span>
+        </div>
+      </>
+    )
+  }
+</div>
