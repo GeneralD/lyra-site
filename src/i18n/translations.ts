@@ -154,8 +154,8 @@ export const copy = {
         },
         screensaver: {
           surface: "While you're away",
-          body: "Your idle screen keeps playing the very same wallpaper videos — same framing, same zoom. It reads lyra's config, so there is nothing to set up.",
-        },
+          body: "Your idle screen keeps playing the very same wallpaper videos — same framing, same zoom. It reads Lyra's config, so there is nothing to set up.",
+        }
         lockscreen: {
           surface: "Even when locked",
           body: "No third-party code can run on the lock screen — so this one bakes your videos into a time-of-day Dynamic Desktop that macOS itself displays, dawn clips to midnight.",
