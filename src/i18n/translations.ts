@@ -18,8 +18,11 @@ export type FeatureKey =
   | "cli"
   | "spectrum";
 
+export type EcosystemKey = "desktop" | "screensaver" | "lockscreen";
+
 type Card = { readonly title: string; readonly body: string };
 type CliEntry = { readonly cmd: string; readonly note: string };
+type EcoCard = { readonly surface: string; readonly body: string };
 
 type Copy = {
   readonly meta: { readonly title: string; readonly description: string };
@@ -49,6 +52,12 @@ type Copy = {
     readonly readme: { readonly pre: string; readonly label: string; readonly post: string };
     readonly cliHeading: string;
     readonly cli: readonly CliEntry[];
+  };
+  readonly ecosystem: {
+    readonly headingHtml: string;
+    readonly lead: string;
+    readonly cards: Readonly<Record<EcosystemKey, EcoCard>>;
+    readonly recommend: { readonly heading: string; readonly body: string; readonly note: string };
   };
   readonly footer: {
     readonly tagline: string;
@@ -135,6 +144,29 @@ export const copy = {
         { cmd: "lyra daemon", note: "run in the background" },
       ],
     },
+    ecosystem: {
+      headingHtml: 'One world, <span class="text-lyric">every screen</span>',
+      lead: "Lyra has two companions that carry its world beyond the desktop — onto the screen saver, and even the lock screen.",
+      cards: {
+        desktop: {
+          surface: "While you work",
+          body: "The heart of it all. A living wallpaper, synced lyrics and a dancing spectrum behind everything you do.",
+        },
+        screensaver: {
+          surface: "While you're away",
+          body: "Your idle screen keeps playing the very same wallpaper videos — same framing, same zoom. It reads Lyra's config, so there is nothing to set up.",
+        },
+        lockscreen: {
+          surface: "Even when locked",
+          body: "No third-party code can run on the lock screen — so this one bakes your videos into a time-of-day Dynamic Desktop that macOS itself displays, dawn clips to midnight.",
+        },
+      },
+      recommend: {
+        heading: "Get the full set",
+        body: "Want Lyra's world to follow you past the screen saver and onto the lock screen? Install all three. The companions piggyback on Lyra's own config and cache — zero extra setup.",
+        note: "Both companions pull in lyra automatically. Then pick LyraScreenSaver in System Settings, and let --apply paint the lock screen.",
+      },
+    },
     footer: {
       tagline: "Desktop lyrics overlay & video wallpaper for macOS.",
       docs: "Docs",
@@ -217,6 +249,29 @@ export const copy = {
         { cmd: "lyra track", note: "再生中の曲を指定" },
         { cmd: "lyra daemon", note: "バックグラウンドで常駐" },
       ],
+    },
+    ecosystem: {
+      headingHtml: 'どの画面にも、<span class="text-lyric">おなじ世界を</span>',
+      lead: "Lyra には2つの相棒がいる。デスクトップの先——スクリーンセーバー、そしてロック画面まで、この世界観を連れていく。",
+      cards: {
+        desktop: {
+          surface: "作業しているとき",
+          body: "すべての起点。動く壁紙のうえに歌詞がともり、スペクトラムが踊る、いつものデスクトップ。",
+        },
+        screensaver: {
+          surface: "席を離れたとき",
+          body: "スクリーンセーバーが、デスクトップと同じ壁紙動画をそのまま引き継ぐ。lyra の設定を読むから、こちらで決めることは何もない。",
+        },
+        lockscreen: {
+          surface: "ロックされたときも",
+          body: "ロック画面はサードパーティのコードが入れない場所。だから動画を時刻連動の Dynamic Desktop に焼き込んで、macOS 自身に描かせる。朝には朝の、夜には夜のクリップを。",
+        },
+      },
+      recommend: {
+        heading: "3つまとめて導入する",
+        body: "スクリーンセーバーでもロック画面でも Lyra の世界観を保ちたいなら、3つセットでの導入がおすすめ。相棒たちは lyra の設定とキャッシュに相乗りするので、追加の設定はいらない。",
+        note: "相棒2つは lyra も自動で連れてくる。あとはシステム設定で LyraScreenSaver を選び、--apply でロック画面まで染めれば完成。",
+      },
     },
     footer: {
       tagline: "歌詞と動く壁紙で、macOS のデスクトップを音楽に。",

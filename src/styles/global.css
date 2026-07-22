@@ -242,6 +242,63 @@ body {
   51%, 100% { opacity: 0; }
 }
 
+/* ------------------------------------------------------------------ *
+ * Ecosystem motifs — each family card's mini "screen": the desktop,
+ * the screen saver, the lock screen. Same rules as the feature motifs:
+ * transform/opacity only, static frame under prefers-reduced-motion.
+ * Markup lives in src/components/EcosystemMotif.astro.
+ * ------------------------------------------------------------------ */
+
+/* screensaver — the wallpaper keeps drifting while the screen breathes dim */
+.eco-pan-slow {
+  animation-duration: 16s;
+}
+.eco-dim {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  animation: eco-dim 7s ease-in-out infinite;
+}
+@keyframes eco-dim {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 0; }
+}
+
+/* lockscreen — a day flowing through the Dynamic Desktop: dawn and day
+   layers cross-fade (opacity only) over a starry-night base. */
+.eco-sky {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+.eco-sky-dawn {
+  background: linear-gradient(165deg, #edcf73 0%, #b8942d 40%, #1e1b4b 90%);
+  animation: eco-dawn 12s ease-in-out infinite;
+}
+.eco-sky-day {
+  background: linear-gradient(165deg, #a5b4fc 0%, #4338ca 55%, #1e1b4b 100%);
+  animation: eco-day 12s ease-in-out infinite;
+}
+.eco-sky-night {
+  background:
+    radial-gradient(circle at 78% 26%, rgba(255, 255, 255, 0.75) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 32% 58%, rgba(255, 255, 255, 0.5) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 56% 18%, rgba(255, 255, 255, 0.6) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 14% 32%, rgba(255, 255, 255, 0.45) 0 1px, transparent 1.5px),
+    linear-gradient(170deg, var(--color-deep), var(--color-bg));
+}
+@keyframes eco-dawn {
+  0%, 25% { opacity: 1; }
+  33%, 92% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes eco-day {
+  0%, 25% { opacity: 0; }
+  33%, 58% { opacity: 1; }
+  66%, 100% { opacity: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .decode-flicker { animation: none; }
@@ -264,4 +321,7 @@ body {
   .ai-label { opacity: 0.85; transform: none; }
   .cli-ch { opacity: 1; }
   .cli-cursor { opacity: 1; }
+
+  /* Ecosystem motifs: undimmed drifting-still saver, night lock screen. */
+  .eco-dim { opacity: 0.25; }
 }
