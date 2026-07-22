@@ -58,6 +58,7 @@ type Copy = {
     readonly lead: string;
     readonly cards: Readonly<Record<EcosystemKey, EcoCard>>;
     readonly recommend: { readonly heading: string; readonly body: string; readonly note: string };
+    readonly lyrakit: string;
   };
   readonly footer: {
     readonly tagline: string;
@@ -166,6 +167,8 @@ export const copy = {
         body: "Want Lyra's world to follow you past the screen saver and onto the lock screen? Install all three. The companions piggyback on Lyra's own config and cache — zero extra setup.",
         note: "Both companions pull in lyra automatically. Then pick LyraScreenSaver in System Settings, and let --apply paint the lock screen.",
       },
+      lyrakit:
+        "Both companions stand on LyraKit — the Swift library that ships inside lyra. Your app can build on it too.",
     },
     footer: {
       tagline: "Desktop lyrics overlay & video wallpaper for macOS.",
@@ -272,6 +275,8 @@ export const copy = {
         body: "スクリーンセーバーでもロック画面でも Lyra の世界観を保ちたいなら、3つセットでの導入がおすすめ。相棒たちは lyra の設定とキャッシュに相乗りするので、追加の設定はいらない。",
         note: "相棒2つは lyra も自動で連れてくる。あとはシステム設定で LyraScreenSaver を選び、--apply でロック画面まで染めれば完成。",
       },
+      lyrakit:
+        "相棒たちは、lyra が同梱する Swift ライブラリ LyraKit の上にできている。あなたのアプリからも、この土台は使える。",
     },
     footer: {
       tagline: "歌詞と動く壁紙で、macOS のデスクトップを音楽に。",

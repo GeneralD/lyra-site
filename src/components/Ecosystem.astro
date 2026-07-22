@@ -75,4 +75,16 @@ const cards = products.map((p) => ({ ...p, ...t.cards[p.key] }));
 <span class="text-faint">$</span> brew install lyra-dynamic-wallpaper
 <span class="text-faint">$</span> <span class="text-decode">lyra-dynamic-wallpaper --apply</span></code></pre>
   </div>
+
+  <!-- LyraKit credit — chip colour matches the companions' "built on LyraKit" README badge (#8A63D2) -->
+  <div class="mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center">
+    <a
+      href="https://github.com/GeneralD/lyra/blob/main/docs/LyraKit.md"
+      class="inline-flex items-center gap-1.5 rounded-full border border-[#8A63D2]/40 bg-[#8A63D2]/10 px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-[#b79ce8] transition hover:border-[#8A63D2] hover:text-ink"
+    >
+      <span class="h-1.5 w-1.5 rounded-full bg-[#8A63D2]"></span>
+      built on LyraKit
+    </a>
+    <p class="font-mono text-xs text-faint">{t.lyrakit}</p>
+  </div>
 </section>
